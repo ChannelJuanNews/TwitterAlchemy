@@ -1,0 +1,21 @@
+{
+  "name": "alchemyapi",
+  "description": "A test of the alchemy API",
+  "main": "server.js",
+  "authors": [
+    "jruel006 <jruel006@ucr.edu>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "Materialize": "materialize#^0.97.6"
+  }
+}
