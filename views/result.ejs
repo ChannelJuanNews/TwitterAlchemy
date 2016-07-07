@@ -24,7 +24,7 @@
         </header>
 
         <main>
-            <br><br><br><br><br><br>
+            <br><br><br><br>
 
             <div class="container center">
                 <% if (sentiments) { %>
@@ -35,14 +35,20 @@
 
 
                 <% if (tweets) { %>
-                    <h1> Tweets length <%= tweets.length %> </h1>
+
+                    <div class="collection">
+                        <% for (var i = 0; i < tweets.length; i++) { %>
+                            <a href="#!" class="collection-item"> <%= tweets[i].text %> </a>
+                        <% } %>
+                    </div>
+
                 <% } else { %>
                     <h1>No Sentimens were given</h1>
                 <% } %>
 
             </div>
 
-
+            <br><br><br><br>
 
         </main>
 
