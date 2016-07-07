@@ -4,7 +4,6 @@ var app = express();
 var AlchemyAPI = require('alchemy-api');
 var alchemy = new AlchemyAPI(process.env.ALCHEMY_API_KEY);
 
-
 var Twitter = require('twitter');
 
 var client = new Twitter({
@@ -22,9 +21,6 @@ app.use(express.static('views'))
 app.use(express.static('bower_components'))
 
 var sentiments = []
-
-
-
 
 app.get('/', function(req, res) {
     res.render('index')
@@ -55,9 +51,7 @@ app.get('/alchemy', function(req, res) {
 
     });
 
-
 });
-
 
 function getSentiments(tweets) {
     sentiments = []
