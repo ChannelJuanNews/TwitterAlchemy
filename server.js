@@ -60,12 +60,7 @@ app.get('/alchemy', function(req, res) {
             });
         }
 
-
-
     });
-
-
-
 
 
 });
