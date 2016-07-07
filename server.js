@@ -21,6 +21,8 @@ app.set('view engine', 'ejs')
 app.use(express.static('views'))
 app.use(express.static('bower_components'))
 
+var sentiments = []
+
 
 
 
@@ -41,30 +43,43 @@ app.get('/alchemy', function(req, res) {
             throw error
         }
 
-        console.log(tweets[0].text)
-
-        for (var i = 0; i < tweets.length; i++){
-
-            /* this is where it goes down */
-            alchemy.sentiment(tweets[i].text, {}, function(err, response) {
-              if (err) {
-                  console.log(err)
-                  throw err
-              }
-              else {
-                   var sentiment = response.docSentiment;
-                   console.log(sentiment)
-                   res.render('result.ejs')
-              }
-
-            });
+        getSentiments(tweets)
+        if (sentiments.length < 0) {
+            console.log('wtf')
         }
+
+        res.render('result.ejs', {
+            tweets : tweets,
+            sentiments : sentiments
+        })
 
     });
 
 
 });
 
+
+function getSentiments(tweets) {
+    sentiments = []
+
+    for (var i = 0; i < tweets.length; i++){
+
+        /* this is where it goes down */
+        alchemy.sentiment(tweets[i].text, {}, function(err, response) {
+          if (err) {
+              console.log(err)
+              throw err;
+          }
+          else {
+               var sentiment = response.docSentiment;
+               sentiments.push(response.docSentiment)
+               console.log(sentiment)
+          }
+
+        });
+    }
+
+}
 
 app.listen(3000, function(){
     console.log('server started on port 3000')
